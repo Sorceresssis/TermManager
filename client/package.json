@@ -1,0 +1,28 @@
+{
+  "name": "term-manager-client",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "vue-tsc && vite build"
+  },
+  "keywords": [],
+  "author": "Sorceress",
+  "license": "MIT",
+  "dependencies": {
+    "@imengyu/vue3-context-menu": "^1.3.8",
+    "axios": "^1.6.2",
+    "element-plus": "^2.5.5",
+    "vue": "^3.4.19",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vue-tsc": "^1.8.22"
+  }
+}

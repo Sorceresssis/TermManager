@@ -1,0 +1,105 @@
+.fill-parent {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.fill-parent-width {
+    width: 100%;
+    overflow: hidden;
+}
+
+.fill-parent-height {
+    height: 100%;
+    overflow: hidden;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-1 {
+    flex: 1 0;
+}
+
+.scrollbar-y-w4 {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.scrollbar-y-w4::-webkit-scrollbar {
+    width: 4px;
+    background-color: transparent;
+}
+
+.scrollbar-y-w4::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #cfcfcf;
+}
+
+.scrollbar-y-w8 {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.scrollbar-y-w8::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+.scrollbar-y-w8::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #cfcfcf;
+}
+
+.disabled {
+    cursor: not-allowed !important;
+    opacity: 0.7;
+}
+
+.image-select-btn {
+    width: 100%;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    padding: 6px 0;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    opacity: .8;
+    z-index: 1;
+    user-select: none;
+    cursor: pointer;
+}
+
+.image-select-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    top: 6px;
+    bottom: 6px;
+    background-color: #fff;
+}
+
+.image-select-btn>* {
+    cursor: pointer;
+    height: 28px;
+    line-height: 28px;
+    width: 50%;
+}
+
+.image-select-btn>*:hover:not(.disabled) {
+    color: rgba(255 255, 255, 0.7);
+}

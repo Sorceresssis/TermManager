@@ -1,0 +1,4 @@
+
+      <span style="color: #58539f;"> 断面图 </span> |
+      <span style="color: #ea7827;"> X-Ray </span> |
+      <span style="color: #6c928c"> 断面图 </span> 
