@@ -14,7 +14,7 @@ import type TagExplanationService from './service/TagExplanationService';
 import type ClientService from './service/ClientService';
 
 
-const port = 3000;
+const port = 5000;
 const app = express();
 const upload = multer(); // 不设置dest，只保存在内存中 { dest: '' }
 

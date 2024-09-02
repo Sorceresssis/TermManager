@@ -1,4 +1,4 @@
-import DatabaseConstructor, { Database, Statement } from "better-sqlite3"
+import DatabaseConstructor from "better-sqlite3"
 import node_fs from "fs"
 
 class TagDB extends DatabaseConstructor {
