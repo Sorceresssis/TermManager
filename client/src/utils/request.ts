@@ -1,8 +1,7 @@
 import axios from "axios";
-import urls_config from "@/config/urls";
 
 const request = axios.create({
-    baseURL: urls_config.API,
+    baseURL: import.meta.env.VITE_APP_API_BASEURL,
     timeout: 5000,
     withCredentials: true,
     responseType: "json",
@@ -10,6 +9,8 @@ const request = axios.create({
         "Content-Type": "application/json",
     },
 });
+
+
 
 
 request.interceptors.request.use((config) => {

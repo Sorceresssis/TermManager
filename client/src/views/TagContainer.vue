@@ -155,7 +155,7 @@
                            size="large"
                            inline-prompt
                            style="--el-switch-on-color: #ff4949; --el-switch-off-color:#13ce66;"
-                           active-text="不可拖动"
+                           active-text="锁定"
                            inactive-text="可拖动" />
             </div>
         </div>

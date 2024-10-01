@@ -13,6 +13,7 @@ import type TagService from './service/TagService';
 import type TagExplanationService from './service/TagExplanationService';
 import type ClientService from './service/ClientService';
 
+const env = process.env.NODE_ENV || 'development';
 
 const port = 5000;
 const app = express();
@@ -22,6 +23,17 @@ app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
 
+
+if (env === 'development') {
+    app.use((req, res, next) => {
+        res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+        res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+        res.header('Access-Control-Allow-Credentials', "true");
+        res.header('Access-Control-Max-Age', '3600')
+        res.header('Access-Control-Allow-Headers', 'Authorization, Accept, Origin, X-Requested-With, Content-Type, Last-Modified');
+        next();
+    });
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -30,6 +42,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/', express.static(config.clientDir));
 app.use('/tag', express.static(config.tagExplanationDir));
 
+
+// ANCHOR 接口
 
 // 如果文件不存在，就创建一个文件
 app.get('/tag/:filename', (req: Request, res: Response) => {

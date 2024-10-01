@@ -25,6 +25,7 @@ const generateConfig = () => {
     const clientDir = node_path.join(__dirname, DIST_TO_SRC, '../client/dist');
     const tagDBPath = node_path.join(DATA_DIR, './db/tag.db');
     const tagExplanationDir = node_path.join(DATA_DIR, './tag-explanation');
+
     const revisionTagExplanationDir = node_path.join(__dirname, DIST_TO_SRC, '../revision-tag-explanation')
     const clientConfigPath = node_path.join(DATA_DIR, './client_config.json')
 
