@@ -1,0 +1,28 @@
+{
+    "name": "term-manager",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {},
+    "author": "Sorceress",
+    "license": "MIT",
+    "description": "",
+    "devDependencies": {
+        "@eslint/js": "^9.15.0",
+        "@types/node": "^22.10.0",
+        "eslint": "^9.15.0",
+        "eslint-plugin-simple-import-sort": "^12.1.1",
+        "eslint-plugin-vue": "^9.31.0",
+        "globals": "^15.12.0",
+        "pm2": "^5.4.3",
+        "postcss": "^8.4.49",
+        "postcss-html": "^1.7.0",
+        "postcss-scss": "^4.0.9",
+        "stylelint": "^16.10.0",
+        "stylelint-config-recommended-scss": "^14.1.0",
+        "stylelint-config-standard": "^36.0.1",
+        "stylelint-config-standard-vue": "^1.0.0",
+        "stylelint-order": "^6.0.4",
+        "stylelint-scss": "^6.10.0",
+        "typescript-eslint": "^8.16.0"
+    }
+}

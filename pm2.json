@@ -1,0 +1,9 @@
+{
+    "apps": {
+      "name": "TermManager",
+      "script": "./server/dist/app.js",
+      "args": [
+        "cross-env NODE_ENV=production"
+      ]
+    }
+}

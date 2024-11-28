@@ -1,0 +1,17 @@
+{
+    "recommendations": [
+      "EditorConfig.EditorConfig",
+      "mikestead.dotenv",
+      "dbaeumer.vscode-eslint",
+      "stylelint.vscode-stylelint",
+      "antfu.unocss",
+      "usernamehw.errorlens",
+      "IgorSbitnev.error-gutters",
+      "antfu.file-nesting",
+      "lokalise.i18n-ally",
+      "vue.volar",
+      "bradlc.vscode-tailwindcss",
+      "eamodio.gitlens"
+    ]
+  }
+  
