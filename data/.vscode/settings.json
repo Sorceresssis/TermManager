@@ -1,0 +1,3 @@
+{
+    "vscode-office.pasterImgPath": "./assets/${fileName}/images/${now}.png",
+}

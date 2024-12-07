@@ -1,0 +1,10 @@
+.inline-list-title {
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.inline-list-title::after {
+    margin: 0 9px 0 2px;
+    color: #999;
+    content: ":";
+}

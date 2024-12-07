@@ -1,0 +1,96 @@
+/* *** READER ***
+    Office Viewer(Markdown Editor) | VScode Extension
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    display: flex;
+    align-items: baseline;
+}
+
+/* *** READER ***
+    Markdown Reader | Browser Plugin
+*/
+
+/* WORK: Adapt auto-number-headers.css */
+
+.md-reader .md-reader__markdown-content {
+    max-width: none !important;
+}
+
+.md-reader h2,
+.md-reader h3,
+.md-reader h4,
+.md-reader h5,
+.md-reader h6 {
+    display: flex;
+    align-items: baseline;
+}
+
+.md-reader h2::before,
+.md-reader h3::before,
+.md-reader h4::before,
+.md-reader h5::before,
+.md-reader h6::before {
+    padding-right: 6px;
+}
+
+/* WORK: Side navigation bar automatic numbering */
+.md-reader__side-h1 {
+    counter-reset: h2counter;
+}
+
+.md-reader__side-h2 {
+    counter-reset: h3counter;
+}
+
+.md-reader__side-h3 {
+    counter-reset: h4counter;
+}
+
+.md-reader__side-h4 {
+    counter-reset: h5counter;
+}
+
+.md-reader__side-h5 {
+    counter-reset: h6counter;
+}
+
+.md-reader__side-h2>a::before {
+    counter-increment: h2counter;
+    content: counter(h2counter) ". " !important;
+}
+
+.md-reader__side-h3>a::before {
+    counter-increment: h3counter;
+    content: counter(h2counter) "."
+        counter(h3counter) ". " !important;
+}
+
+.md-reader__side-h4>a::before {
+    counter-increment: h4counter;
+    content: counter(h2counter) "."
+        counter(h3counter) "."
+        counter(h4counter) ". " !important;
+}
+
+.md-reader__side-h5>a::before {
+    counter-increment: h5counter;
+    content: counter(h2counter) "."
+        counter(h3counter) "."
+        counter(h4counter) "."
+        counter(h5counter) ". " !important;
+}
+
+.md-reader__side-h6>a::before {
+    counter-increment: h6counter;
+    content: counter(h2counter) "."
+        counter(h3counter) "."
+        counter(h4counter) "."
+        counter(h5counter) "."
+        counter(h6counter) ". " !important;
+}
