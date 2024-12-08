@@ -56,11 +56,6 @@ class TagService {
   }
 
   public edit(tag: VO.Tag): boolean {
-    tag.name = tag.name.trim();
-    tag.name_zh = tag.name_zh.trim();
-    tag.name_ja = tag.name_ja.trim();
-    tag.name_en = tag.name_en.trim();
-
     return this.tagDao.updateInfoById(tag.id, tag.name, tag.name_zh, tag.name_ja, tag.name_en) === 1;
   }
 

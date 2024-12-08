@@ -43,10 +43,20 @@ export class TagController {
   }
 
   public async update(req: Request, res: Response) {
-    if (this.tagService.edit(req.body)) {
+    const body = req.body as VO.Tag;
+
+    const tag :VO.Tag = {
+      id: body.id,
+      name: body.name,
+      name_zh: body.name_zh,
+      name_ja: body.name_ja,
+      name_en: body.name_en,
+    };
+
+    if (this.tagService.edit(tag)) {
       await Promise.all([
-        saveTagIcon(req.body.id, req.file),
-        this.tagExplanationService.updateTagExplanationIndex(req.body),
+        saveTagIcon(tag.id, req.file),
+        this.tagExplanationService.updateTagExplanationIndex(tag),
       ]).catch(err => {
         res.send(ResponseResult.success(void 0, String(err)));
         return;
