@@ -11,7 +11,7 @@ import type { SecondCategoryController } from '@/controller/SecondCategoryContro
 import type { TagController } from '@/controller/TagController';
 import type { TagExplanationController } from '@/controller/TagExplanationController';
 import type { TopCategoryController } from '@/controller/TopCategoryController';
-import { getLocalIp } from '@/helper/net.helper';
+import { getAllLocalIps } from '@/helper/net.helper';
 import { authMiddleware } from '@/middleware/AuthMiddleware';
 import { cors } from '@/middleware/cors';
 import { ResponseResult } from '@/pojo/response-result';
@@ -101,8 +101,9 @@ app.put('/api/tag/order', authMiddleware, tagController.updateOrder.bind(tagCont
 
 
 app.listen(settings.SERVER_PORT, () => {
-  console.log(`
-    Local:    http://localhost:${settings.SERVER_PORT}/
-    Network:  http://${getLocalIp()}:${settings.SERVER_PORT}/
-  `);
+  const netWorkIps = getAllLocalIps().map(ip => {
+    return `Network(${ip.interface}):  http://${ip.address}:${settings.SERVER_PORT}/`;
+  }).join('\n');
+
+  console.log(`Local:  http://localhost:${settings.SERVER_PORT}/\n${ netWorkIps}`);
 });

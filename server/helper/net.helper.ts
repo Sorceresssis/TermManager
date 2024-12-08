@@ -1,14 +1,19 @@
 import os from 'node:os';
 
-export function getLocalIp(): string {
+
+export function getAllLocalIps(): { interface: string; address: string }[] {
   const interfaces = os.networkInterfaces();
-  let ip = '';
-  for (const iface in interfaces) {
-    interfaces[iface]?.forEach(details => {
+  const result: { interface: string; address: string }[] = [];
+
+  for (const ifaceName in interfaces) {
+    interfaces[ifaceName]?.forEach(details => {
       if (details.family === 'IPv4' && !details.internal) {
-        ip = details.address;
+        result.push({
+          interface: ifaceName, address: details.address,
+        });
       }
     });
   }
-  return ip;
+
+  return result;
 }
