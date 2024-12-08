@@ -21,6 +21,7 @@
     "noUnusedLocals": false, // 没有使用的变量
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
       "@/*": [

@@ -28,7 +28,7 @@ class TagService {
     });
   }
 
-  public queryTagByKeyword(keyword: string, pn: number = 1, ps: number = 30): VO.Tag[] {
+  public queryTagByKeyword(keyword: string, pn: number = 1, ps: number = 30): VO.TagWithCategory[] {
     return this.tagDao.queryByKeyword(keyword, pn, ps);
   }
 

@@ -17,6 +17,13 @@ declare namespace VO {
     name_en: string;
   }
 
+  type TagWithCategory = Tag & {
+    topCategoryId: number,
+    topCategoryName: string,
+    secondCategoryId: number,
+    secondCategoryName: string,
+  }
+
   type SecondCategoryWithTags = SecondCategory & {
     tags: Tag[];
   }

@@ -17,7 +17,10 @@
                   loading="lazy"
                   fit="cover" />
         <div class="tag-content">
-          <div class="tag-title"> {{ item.name }} </div>
+          <div class="tag-title">
+            <div>{{ item.name }}</div>
+            <div class="tag-category">({{ item.topCategoryName }} • {{ item.secondCategoryName }})</div>
+          </div>
           <div class="tag-meta">
             <span class="inline-list-title"> ZH </span>
             <span> {{ item.name_zh }} </span>
@@ -88,9 +91,17 @@ function handleTagAutocompleteSelect(item: Record<keyof VO.Tag, any>) {
 }
 
 .tag-autocomplete-suggestion__item .tag-title {
+  display: flex;
+  align-items: baseline;
   margin-bottom: 10px;
   font-size: 14px;
   color: #007AB3;
+}
+
+.tag-autocomplete-suggestion__item .tag-category {
+  margin-left: 16px;
+  font-size: 12px;
+  color: #666;
 }
 
 .tag-autocomplete-suggestion__item .tag-meta {

@@ -71,12 +71,13 @@
                       <span> {{ element.name_en }} </span>
                     </p>
                   </div>
-                  <p class="op">
-                    <span @click="editTag($event, element)"> 编辑 </span>
-                    <a :href="UrlsConfig.getOpenTagExplanationFileInVscodeUrl(element.id)"
+                  <p class="ops">
+                    <span class="op-item" @click="editTag($event, element)"> 编辑 </span>
+                    <a class="op-item"
+                       :href="UrlsConfig.getOpenTagExplanationFileInVscodeUrl(element.id)"
                        rel="noopener noreferrer">编辑文档</a>
-                    <span @click="showTagMoveDialog(category.id, element)"> 移动 </span>
-                    <span @click="deleteTag(category, element)"> 删除 </span>
+                    <span class="op-item" @click="showTagMoveDialog(category.id, element)"> 移动 </span>
+                    <span class="op-item op-delete" @click="deleteTag(category, element)"> 删除 </span>
                   </p>
                 </div>
               </div>

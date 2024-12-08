@@ -18,8 +18,8 @@ img {
 }
 
 #second-categories {
-    width: 200px;
     flex-shrink: 0;
+    width: 200px;
     border-right: 2px solid #eeeeed;
 }
 
@@ -57,8 +57,8 @@ img {
 
 .operate {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     height: 50px;
     padding: 0 20px;
     border-top: 2px solid #eeeeed;
@@ -123,28 +123,28 @@ img {
     color: #333;
 }
 
-.tag-item .op {
+.tag-item .ops {
     display: flex;
     justify-content: flex-end;
     font-size: 12px;
     visibility: hidden;
 }
 
-.tag-item:hover .op {
+.tag-item:hover .ops {
     visibility: visible;
 }
 
-.tag-item .op>* {
+.tag-item .op-item {
     margin-left: 15px;
     color: #007AB3;
     cursor: pointer;
     user-select: none;
 }
 
-.tag-item .op span:hover {
+.tag-item .op-item:hover {
     text-decoration: underline;
 }
 
-.tag-item .op span:last-child {
+.tag-item .op-delete {
     color: #ff4949;
 }

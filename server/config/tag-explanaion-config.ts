@@ -2,7 +2,7 @@ class TagExplanationConfig {
   public static readonly VERSION = 1;
 
   public static readonly hitFrameReg = [
-    /\s*<!-- version="[\s\S]*?编辑文档\s*<\/a>\s*<\/div>\s*<\/div>\s*<\/div>/,
+    /\s*<!-- version="[\s\S]*?编辑文档\s*<\/a>\s*<\/div>\s*<\/div>\s*<\/div>\s*/,
   ];
 
   public static genTagExplanationIndexFrame(tag: VO.Tag):string[] {

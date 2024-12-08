@@ -27,13 +27,25 @@ class TagDao {
     return prepare.all(secondCategoryId) as VO.Tag[];
   }
 
-  public queryByKeyword(keyword: string, pn: number, ps: number): VO.Tag[] {
-    const stmt = this.db.prepare<any[], VO.Tag>(`
-            SELECT id, name, name_zh, name_ja, name_en
-            FROM tag
-            WHERE name LIKE ? OR name_zh LIKE ? OR name_en LIKE ? OR name_ja LIKE ?
-            LIMIT ?, ?;
-        `);
+  public queryByKeyword(keyword: string, pn: number, ps: number): VO.TagWithCategory[] {
+    const stmt = this.db.prepare<any[], VO.TagWithCategory>(`
+      SELECT
+      	tc.id as topCategoryId,
+      	tc.name as topCategoryName,
+      	sc.id as secondCategoryId,
+      	sc.name as secondCategoryName,
+      	t.id,
+      	t.name,
+      	t.name_zh,
+      	t.name_ja,
+      	t.name_en
+      FROM
+      	top_category as tc
+      	JOIN second_category as sc ON tc.id = sc.top_category_id
+      	JOIN tag as t ON sc.id = t.second_category_id
+      WHERE t.name LIKE ? OR t.name_zh LIKE ? OR t.name_en LIKE ? OR t.name_ja LIKE ?
+      LIMIT ?, ?;
+    `);
 
     const likeValue = `%${keyword}%`;
     return stmt.all(likeValue, likeValue, likeValue, likeValue, (pn - 1) * ps, ps);

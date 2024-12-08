@@ -9,8 +9,8 @@ class TagApi {
   }
 
   public static getTagsByKeyword<
-    R = DTO.ResponseResult<VO.Tag[]>,
-    T = DTO.ResponseResult<VO.Tag[]>
+    R = DTO.ResponseResult<VO.TagWithCategory[]>,
+    T = DTO.ResponseResult<VO.TagWithCategory[]>
   >(keyword: string) {
     return request.get<R, T>('/tag/search', {
       params: {
