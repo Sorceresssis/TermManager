@@ -1,56 +1,56 @@
 body,
 h1,
 #header {
-    counter-reset: h2counter;
+  counter-reset: h2counter;
 }
 
 h2 {
-    counter-reset: h3counter;
+  counter-reset: h3counter;
 }
 
 h3 {
-    counter-reset: h4counter;
+  counter-reset: h4counter;
 }
 
 h4 {
-    counter-reset: h5counter;
+  counter-reset: h5counter;
 }
 
 h5 {
-    counter-reset: h6counter;
+  counter-reset: h6counter;
 }
 
 h2::before {
-    counter-increment: h2counter;
-    content: counter(h2counter) ". " !important;
+  counter-increment: h2counter;
+  content: counter(h2counter) ". " !important;
 }
 
 h3::before {
-    counter-increment: h3counter;
-    content: counter(h2counter) "."
-        counter(h3counter) ". " !important;
+  counter-increment: h3counter;
+  content: counter(h2counter) "."
+    counter(h3counter) ". " !important;
 }
 
 h4::before {
-    counter-increment: h4counter;
-    content: counter(h2counter) "."
-        counter(h3counter) "."
-        counter(h4counter) ". " !important;
+  counter-increment: h4counter;
+  content: counter(h2counter) "."
+    counter(h3counter) "."
+    counter(h4counter) ". " !important;
 }
 
 h5::before {
-    counter-increment: h5counter;
-    content: counter(h2counter) "."
-        counter(h3counter) "."
-        counter(h4counter) "."
-        counter(h5counter) ". " !important;
+  counter-increment: h5counter;
+  content: counter(h2counter) "."
+    counter(h3counter) "."
+    counter(h4counter) "."
+    counter(h5counter) ". " !important;
 }
 
 h6::before {
-    counter-increment: h6counter;
-    content: counter(h2counter) "."
-        counter(h3counter) "."
-        counter(h4counter) "."
-        counter(h5counter) "."
-        counter(h6counter) ". " !important;
+  counter-increment: h6counter;
+  content: counter(h2counter) "."
+    counter(h3counter) "."
+    counter(h4counter) "."
+    counter(h5counter) "."
+    counter(h6counter) ". " !important;
 }

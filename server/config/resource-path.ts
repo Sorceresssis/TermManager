@@ -40,6 +40,12 @@ class ResourcePath {
     return nodePath.join(ResourcePath.TAG_EXPLANATIONS_DIR, `${id}`, 'index.md');
   }
 
+  public static getTagExplanationItemRefFile(id:number, refIndex:number) {
+    return nodePath.join(ResourcePath.TAG_EXPLANATIONS_DIR, `${id}`, `ref_${refIndex}.md`);
+  }
+
+  public static TagExplanationItemRefFilenameRegex = /^ref_(\d+)\.md$/;
+
   public static getTagExplanationItemIconFile(id: number) {
     return nodePath.join(ResourcePath.TAG_EXPLANATIONS_DIR, `${id}`, 'icon.jpg');
   }

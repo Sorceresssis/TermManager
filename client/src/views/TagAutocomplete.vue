@@ -64,7 +64,7 @@ function searchTag(queryword: string, cb: AutocompleteFetchSuggestionsCallback) 
 }
 
 function handleTagAutocompleteSelect(item: Record<keyof VO.Tag, any>) {
-  window.open(UrlsConfig.getTagExplanationUrl(item.id), '_blank');
+  window.open(UrlsConfig.getTagExplanationIndexUrl(item.id), '_blank', 'noopener noreferrer');
 }
 
 </script>
@@ -76,7 +76,6 @@ function handleTagAutocompleteSelect(item: Record<keyof VO.Tag, any>) {
   overflow: hidden;
   height: 100px;
   padding: 4px 0
-
 }
 
 .tag-autocomplete-suggestion__item .tag-icon {
@@ -108,5 +107,4 @@ function handleTagAutocompleteSelect(item: Record<keyof VO.Tag, any>) {
   margin-top: 6px;
   font-size: 12px;
 }
-
 </style>

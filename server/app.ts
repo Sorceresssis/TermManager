@@ -6,7 +6,6 @@ import multer from 'multer';
 import ResourcePath from '@/config/resource-path';
 import settings from '@/config/settings';
 import type { AuthController } from '@/controller/AuthController';
-import type { OpenInVscodeController } from '@/controller/OpenInVscodeController';
 import type { SecondCategoryController } from '@/controller/SecondCategoryController';
 import type { TagController } from '@/controller/TagController';
 import type { TagExplanationController } from '@/controller/TagExplanationController';
@@ -34,7 +33,6 @@ app.use(express.urlencoded({
 
 const authController = provider.get<AuthController>(injectType.AuthController);
 const tagExplanationController = provider.get<TagExplanationController>(injectType.TagExplanationController);
-const openInVscodeController = provider.get<OpenInVscodeController>(injectType.OpenInVscodeController);
 const topCategoryController = provider.get<TopCategoryController>(injectType.TopCategoryController);
 const secondCategoryController = provider.get<SecondCategoryController>(injectType.SecondCategoryController);
 const tagController = provider.get<TagController>(injectType.TagController);
@@ -44,6 +42,7 @@ const clientService = provider.get<ClientService>(injectType.ClientService);
  * 挂载前端网页文件
  */
 app.use('/', express.static(ResourcePath.CLIENT_DIR));
+
 
 /**
  * 将 tag-explanations 文件夹挂载到 /tag 路径下
@@ -55,7 +54,11 @@ app.use('/tag', authMiddleware, express.static(ResourcePath.TAG_EXPLANATIONS_DIR
  * 如果的资源在 ResourcePath.TAG_EXPLANATIONS_DIR 目录下不存在，请求就会到达此接口。
  * 如果应该存在就自动创建。
  */
-app.use('/tag/:id/index.md', authMiddleware, tagExplanationController.HandleitemIndexMiss.bind(tagExplanationController));
+app.use('/tag/:id/index.md', authMiddleware, tagExplanationController.HandleItemIndexMiss.bind(tagExplanationController));
+app.use('/api/tag-explanation/ref', authMiddleware, tagExplanationController.createReference.bind(tagExplanationController));
+app.use('/api/tag-explanation/format', authMiddleware, tagExplanationController.format.bind(tagExplanationController));
+app.use('/api/tag-explanation/open-in-editor', authMiddleware, tagExplanationController.openInEditor.bind(tagExplanationController));
+app.use('/api/tag-explanation/open-data-folder-in-editor', authMiddleware, tagExplanationController.openDataFolderInEditor.bind(tagExplanationController));
 
 
 /**
@@ -86,11 +89,6 @@ app.get('/api/client/config', authMiddleware, (req: Request, res: Response) => {
 });
 
 
-// ANCHOR Open In VSCode
-app.get('/api/open-data-folder-in-vscode', authMiddleware, openInVscodeController.dataFolder.bind(openInVscodeController));
-app.get('/api/open-tag-explanation-file-in-vscode', authMiddleware, openInVscodeController.tagExplanationFile.bind(openInVscodeController));
-
-
 // ANCHOR Tag
 app.get('/api/tag/all/:topCategoryId', authMiddleware, tagController.querySecondCategoryWithTagsByTopCategory.bind(tagController));
 app.post('/api/tag', authMiddleware, upload.single('icon'), tagController.create.bind(tagController));
@@ -105,5 +103,5 @@ app.listen(settings.SERVER_PORT, () => {
     return `Network(${ip.interface}):  http://${ip.address}:${settings.SERVER_PORT}/`;
   }).join('\n');
 
-  console.log(`Local:  http://localhost:${settings.SERVER_PORT}/\n${ netWorkIps}`);
+  console.log(`Local:  http://localhost:${settings.SERVER_PORT}/\n${netWorkIps}`);
 });

@@ -38,8 +38,7 @@ class TagApi {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-    }
-    );
+    });
   }
 
   public static delete<
@@ -58,7 +57,22 @@ class TagApi {
     moveToSecondCategoryId: number
   ) {
     return request.put<R, T>('/tag/order', {
-      curId, tarNextId, moveToSecondCategoryId,
+      curId,
+      tarNextId,
+      moveToSecondCategoryId,
+    });
+  }
+
+  public static createTagExplanationReference<
+    R = DTO.ResponseResult<VO.TagExplanationRefInfo>,
+    T = DTO.ResponseResult<VO.TagExplanationRefInfo>
+  >(tagId:number) {
+    return request.post<R, T>('/tag-explanation/ref', {
+      tagId,
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
   }
 }

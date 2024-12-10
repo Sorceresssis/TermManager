@@ -5,5 +5,9 @@ export function login(username: string, password: string) {
   return request.post<any, DTO.ResponseResult<string>>('/login', {
     username,
     password,
+  }, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 }

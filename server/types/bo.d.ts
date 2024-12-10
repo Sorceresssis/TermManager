@@ -1,6 +1,6 @@
 declare namespace BO {
-    type TopCategory = {
-        id: number;
-        name: string;
-    }
+  type TopCategory = {
+    id: number;
+    name: string;
+  }
 }

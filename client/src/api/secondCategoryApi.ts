@@ -20,7 +20,11 @@ class SecondCategoryApi {
   >(
     secondCategory: DTO.SecondCategoryForm
   ) {
-    return request.post<R, T>('/second-category', secondCategory);
+    return request.post<R, T>('/second-category', secondCategory, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   public static edit<

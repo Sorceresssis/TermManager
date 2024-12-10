@@ -4,7 +4,6 @@ import { Container } from 'inversify';
 
 import ResourcePath from '@/config/resource-path';
 import { AuthController } from '@/controller/AuthController';
-import { OpenInVscodeController } from '@/controller/OpenInVscodeController';
 import { SecondCategoryController } from '@/controller/SecondCategoryController';
 import { TagController } from '@/controller/TagController';
 import { TagExplanationController } from '@/controller/TagExplanationController';
@@ -37,7 +36,6 @@ container.bind(injectType.ClientService).to(ClientService).inSingletonScope();
 
 container.bind(injectType.AuthController).to(AuthController).inSingletonScope();
 container.bind(injectType.TagExplanationController).to(TagExplanationController).inSingletonScope();
-container.bind(injectType.OpenInVscodeController).to(OpenInVscodeController).inSingletonScope();
 container.bind(injectType.TopCategoryController).to(TopCategoryController).inSingletonScope();
 container.bind(injectType.SecondCategoryController).to(SecondCategoryController).inSingletonScope();
 container.bind(injectType.TagController).to(TagController).inSingletonScope();

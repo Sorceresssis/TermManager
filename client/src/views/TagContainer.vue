@@ -38,7 +38,7 @@
             <template #item="{ element }">
               <div :key="element.id"
                    class="tag-item flex-row">
-                <a :href="UrlsConfig.getTagExplanationUrl(element.id)"
+                <a :href="UrlsConfig.getTagExplanationIndexUrl(element.id)"
                    target="_blank"
                    rel="noopener noreferrer">
                   <el-image class="tag-item__icon"
@@ -49,7 +49,7 @@
                 <div class="flex-1 flex-column">
                   <div class="flex-1">
                     <h4 class="tag-item__title">
-                      <a :href="UrlsConfig.getTagExplanationUrl(element.id)"
+                      <a :href="UrlsConfig.getTagExplanationIndexUrl(element.id)"
                          target="_blank"
                          rel="noopener noreferrer">
                         {{ element.name }}
@@ -72,12 +72,17 @@
                     </p>
                   </div>
                   <p class="ops">
-                    <span class="op-item" @click="editTag($event, element)"> 编辑 </span>
+                    <span class="op-item"
+                          @click="editTag($event, element)"> 编辑 </span>
                     <a class="op-item"
-                       :href="UrlsConfig.getOpenTagExplanationFileInVscodeUrl(element.id)"
+                       :href="UrlsConfig.getOpenTagExplanationIndexFileInEditorUrl(element.id)"
                        rel="noopener noreferrer">编辑文档</a>
-                    <span class="op-item" @click="showTagMoveDialog(category.id, element)"> 移动 </span>
-                    <span class="op-item op-delete" @click="deleteTag(category, element)"> 删除 </span>
+                    <span class="op-item"
+                          @click="createTagRef(element)">添加ref</span>
+                    <span class="op-item"
+                          @click="showTagMoveDialog(category.id, element)"> 移动 </span>
+                    <span class="op-item op-delete"
+                          @click="deleteTag(category, element)"> 删除 </span>
                   </p>
                 </div>
               </div>
@@ -159,7 +164,7 @@
         </el-dialog>
       </div>
       <div class="operate">
-        <div  style="width: 700px;">
+        <div style="width: 700px;">
           <tag-autocomplete />
         </div>
         <el-switch v-model="tagDraggable"
@@ -204,7 +209,7 @@ import { inject, reactive, readonly, Ref, ref, toRaw, watch } from 'vue';
 import draggable from 'vuedraggable';
 
 import SecondCategoryApi from '@/api/secondCategoryApi';
-import tagApi from '@/api/tagApi';
+import TagApi from '@/api/tagApi';
 import Button1 from '@/components/Button1.vue';
 import UrlsConfig from '@/config/urls.config';
 import { throttle } from '@/utils/common';
@@ -246,7 +251,7 @@ watch(activeTopCategory, throttle(async newVal => {
   }
 
   if (!secondCategoryWithTagsMap.value.has(newVal)) {
-    tagApi.getSecondCategoryWithTags(newVal).then(resp => {
+    TagApi.getSecondCategoryWithTags(newVal).then(resp => {
       if (resp.success) {
         secondCategoryWithTagsMap.value.set(newVal, resp.data);
       } else {
@@ -469,7 +474,7 @@ function createTag() {
       formData.append('icon', tagInputNewIconFile);
     }
 
-    tagApi.create(formData).then(resp => {
+    TagApi.create(formData).then(resp => {
       if (resp.success && resp.data) {
         ElMessage.success('添加成功');
         curSecondCategoryWithTags.tags.push(resp.data);
@@ -492,7 +497,7 @@ const editTag = (e: Event, tag: VO.Tag) => {
     if (_tagFormData.icon !== _tagFormData.originIcon && tagInputNewIconFile) {
       formData.append('icon', tagInputNewIconFile);
     }
-    tagApi.edit(formData).then(resp => {
+    TagApi.edit(formData).then(resp => {
       // ANCHOR 刷新图片
       const imgElement = ((e.target as HTMLElement).parentNode?.parentNode?.parentNode?.firstChild?.firstChild as HTMLDivElement).querySelector('img');
 
@@ -545,7 +550,7 @@ function handleTagMove() {
   tagMoveDialogVisible.value = false;
   if (_fromTopCategoryId === _moveToTopCategoryId && _fromSecondCategoryId === _moveToSecondCategoryId) return;
 
-  tagApi.changeOrderAndMove(_moveTag.id, 0, _moveToSecondCategoryId).then(resp => {
+  TagApi.changeOrderAndMove(_moveTag.id, 0, _moveToSecondCategoryId).then(resp => {
     if (resp.success) {
       // 把要移动的标签从当前二级分类的数组中删除
       if (secondCategoryWithTagsMap.value.has(_fromTopCategoryId)) {
@@ -595,7 +600,7 @@ const deleteTag = (secondCategory: VO.SecondCategoryWithTags, tag: VO.Tag) => {
   }
   ).then(() => {
     ElMessageBox.confirm('确定删除该标签吗？', '删除标签').then(() => {
-      tagApi.delete(tag.id).then(resp => {
+      TagApi.delete(tag.id).then(resp => {
         if (resp.success) {
           ElMessage.success('删除成功');
           const filtered = secondCategory.tags.filter(item => item.id !== tag.id);
@@ -624,10 +629,21 @@ function handleTagDrag(secondCategoryWithTags: VO.SecondCategoryWithTags, e: Dra
 
   const targetNextId = secondCategoryWithTags.tags[newIndex + 1]?.id || 0;
 
-  tagApi.changeOrderAndMove(curId, targetNextId, secondCategoryWithTags.id);
+  TagApi.changeOrderAndMove(curId, targetNextId, secondCategoryWithTags.id);
 };
 
-
+function createTagRef(tag: VO.Tag) {
+  ElMessageBox.confirm('确定给该标签的添加一个引用吗', '添加引用').then(() => {
+    TagApi.createTagExplanationReference(tag.id).then(resp => {
+      if (resp.success) {
+        const data = resp.data;
+        window.open(UrlsConfig.getTagExplanationReferenceUrl(data.tagId, data.refIndex), '_blank', 'noopener,noreferrer');
+      } else {
+        ElMessage.error('添加引用失败');
+      }
+    });
+  });
+}
 </script>
 
 <style scoped>

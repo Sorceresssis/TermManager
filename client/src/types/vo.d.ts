@@ -31,4 +31,10 @@ declare namespace VO {
   type ClientConfig ={
     title:string
   }
+
+  type TagExplanationRefInfo = {
+    tagId: number,
+    refIndex: number,
+    localPath: string,
+  }
 }

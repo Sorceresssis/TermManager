@@ -5,7 +5,9 @@ export class AuthService {
   private static secretKey = settings.JWT_SECRET;
 
   public static generateToken(payload: object): string {
-    return jwt.sign(payload, this.secretKey, {expiresIn: 60 * 60 * 24});
+    return jwt.sign(payload, this.secretKey, {
+      expiresIn: 60 * 60 * 24,
+    });
   }
 
   public static verifyToken(token: string): object | string {

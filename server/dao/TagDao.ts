@@ -7,12 +7,17 @@ import injectType from '@/provider/inject-type';
 @injectable()
 class TagDao {
   public constructor(
-        @inject(injectType.TagDB) private db: TagDB
+    @inject(injectType.TagDB) private db: TagDB
   ) { }
 
   public queryTagInfoById(id: number) {
     const prepare = this.db.prepare<any, VO.Tag>('SELECT id, name, name_zh, name_ja, name_en FROM \'tag\' WHERE id = ?;');
     return prepare.get(id);
+  }
+
+  public queryAll() {
+    const prepare = this.db.prepare<[], VO.Tag>('SELECT id, name, name_zh, name_ja, name_en FROM tag');
+    return prepare.all();
   }
 
   public queryAllBySecondCategoryId(secondCategoryId: number): VO.Tag[] {

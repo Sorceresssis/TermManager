@@ -13,7 +13,6 @@ const injectType = {
 
   AuthController: Symbol('AuthController'),
   TagExplanationController: Symbol('TagExplanationController'),
-  OpenInVscodeController: Symbol('OpenInVscodeController'),
   TopCategoryController: Symbol('TopCategoryController'),
   SecondCategoryController: Symbol('SecondCategoryController'),
   TagController: Symbol('TagController'),
