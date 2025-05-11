@@ -9,14 +9,24 @@ import tseslint from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  {files: ['**/*.{js,mjs,cjs,ts,vue}']},
-  {languageOptions: {globals: globals.browser}},
+  {
+    files: ['**/*.{js,mjs,cjs,ts,vue}'],
+  },
+  {
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   ...pluginVue.configs['flat/essential'],
   {
     files: ['**/*.vue'],
-    languageOptions: {parserOptions: {parser: tseslint.parser}},
+    languageOptions: {
+      parserOptions: {
+        parser: tseslint.parser,
+      },
+    },
     settings: {},
     rules: {
       'vue/html-indent': [2, 2],
@@ -68,7 +78,9 @@ export default [
     },
   },
   {
-    plugins: {'simple-import-sort': pluginSimpleImportSort},
+    plugins: {
+      'simple-import-sort': pluginSimpleImportSort,
+    },
     rules: {
       'simple-import-sort/imports': 2,
       'simple-import-sort/exports': 2,
@@ -92,13 +104,17 @@ export default [
       // 如果代码块是单行的时候，代码块内部前后需要留一个空格
       'block-spacing': [2, 'always'],
       // 大括号语法采用『1tbs』,允许单行样式
-      'brace-style': [2, '1tbs', {'allowSingleLine': true}],
+      'brace-style': [2, '1tbs', {
+        'allowSingleLine': true,
+      }],
       /**
        *该规则会搜索代码中所有的下划线，它会忽略变量名开始和结尾的下划线而只检测变量中间的下划线。
        *如果ESLint认为一个变量是常量（所有字母大写），那么在变量名字母之间添加下划线也是可以而不会报错的。
        *该规则只检测生命和定义时的变量而不检测函数调用时的函数名。
        **/
-      'camelcase': [2, {'properties': 'never'}],
+      'camelcase': [2, {
+        'properties': 'never',
+      }],
       // 在定义对象或数组时，最后一项不能加逗号
       'comma-dangle': [2, {
         'arrays': 'always-multiline',
@@ -128,7 +144,9 @@ export default [
       'handle-callback-err': [2, '^(err|error)$',
       ],
       // 这个就是关于用什么来缩进了，4个空格=两个tab .
-      'indent': [2, 2, {SwitchCase: 1}],
+      'indent': [2, 2, {
+        SwitchCase: 1,
+      }],
       // keyword 前后需要空格
       'keyword-spacing': [2, {
         'before': true,
@@ -235,7 +253,9 @@ export default [
       // 该规则保证了字符串不分两行书写。
       'no-multi-str': 2,
       // 空行不能够超过2行
-      'no-multiple-empty-lines': [2, {'max': 2}],
+      'no-multiple-empty-lines': [2, {
+        'max': 2,
+      }],
       // 该规则保证了不重写原生对象。
       'no-native-reassign': 2,
       // 在in操作符左边的操作项不能用! 例如这样写不对的：if ( !a in b) { //dosomething }
@@ -288,7 +308,9 @@ export default [
       // 禁止在不需要分行的时候使用了分行
       'no-unexpected-multiline': 2,
       // 禁止使用没有必要的三元操作符，因为用些三元操作符可以使用其他语句替换
-      'no-unneeded-ternary': [2, {'defaultAssignment': false}],
+      'no-unneeded-ternary': [2, {
+        'defaultAssignment': false,
+      }],
       // 没有执行不到的代码
       'no-unreachable': 1,
       // 没有定义了没有被使用到的变量
@@ -301,7 +323,9 @@ export default [
       // 不要使用with语句
       'no-with': 2,
       // 在某些场景只能使用一个var来申明变量
-      'one-var': [2, {'initialized': 'never'}],
+      'one-var': [2, {
+        'initialized': 'never',
+      }],
       // 在进行断行时，操作符应该放在行首还是行尾。并且还可以对某些操作符进行重写。
       'operator-linebreak': [2, 'after', {
         'overrides': {
@@ -314,7 +338,9 @@ export default [
           'multiline': true,
           'minProperties': 1,
         },
-        'ObjectPattern': {'multiline': true},
+        'ObjectPattern': {
+          'multiline': true,
+        },
         'ImportDeclaration': 'never',
         'ExportDeclaration': {
           'multiline': true,

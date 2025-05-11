@@ -121,3 +121,8 @@
   counter-increment: imagecounter;
   content: "[" counter(imagecounter) "]  -  ";
 }
+
+
+.images .from:not(:has(.idx)) {
+  display: none;
+}
